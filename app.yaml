@@ -1,0 +1,35 @@
+name: multilingual-translation-demo
+region: nyc
+services:
+  - name: web
+    environment_slug: node-js
+    github:
+      # Replace with your own repo once you've pushed this folder.
+      repo: your-github-username/multilingual-translation-demo
+      branch: main
+      deploy_on_push: true
+    # Delete this line if this folder (multilingual-translation-demo/) is
+    # itself the repo root. Set it to the right subpath if you pushed it
+    # inside a larger repo instead.
+    # source_dir: /multilingual-translation-demo
+    instance_count: 1
+    instance_size_slug: apps-s-1vcpu-1gb
+    http_port: 8080
+    envs:
+      # Start safe: dry-run mode needs no key and costs nothing. Flip to
+      # "false" once MODEL_ACCESS_KEY is set and you're ready to go live.
+      - key: DRY_RUN
+        value: "true"
+        scope: RUN_TIME
+        type: general
+      # Create this in the Control Panel: Inference -> Model Access Keys.
+      - key: MODEL_ACCESS_KEY
+        value: "REPLACE_WITH_YOUR_SERVERLESS_INFERENCE_MODEL_ACCESS_KEY"
+        scope: RUN_TIME
+        type: secret
+      # Model used for translation. openai-gpt-oss-120b is fast and cheap;
+      # swap in anthropic-claude-5-sonnet (or similar) for higher quality.
+      - key: MODEL_ID
+        value: "openai-gpt-oss-120b"
+        scope: RUN_TIME
+        type: general

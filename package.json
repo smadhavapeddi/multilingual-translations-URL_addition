@@ -1,0 +1,13 @@
+{
+  "name": "multilingual-translation-demo",
+  "version": "1.0.0",
+  "description": "Real-time translation demo for inbound support emails and product descriptions, powered by DigitalOcean Serverless Inference",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}
